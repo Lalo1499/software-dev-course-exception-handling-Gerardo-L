@@ -33,6 +33,7 @@ const readlineSync = require('readline-sync');
 let animals = [];
 let fees = [];
 function addAnimal(name, fee) {
+
     if (!name || fee < 0) {
         throw new Error("Invalid animal name or adoption fee!");
     }
@@ -40,12 +41,18 @@ function addAnimal(name, fee) {
     fees.push(fee);
 }
 function getAdoptionFee(animalName) {
+   try {
+
     let index = animals.indexOf(animalName);
     if (index === -1) {
         throw new Error("Animal not found in records!");
     }
     return fees[index];
+} catch (error) {
+    console.log("Error retrieving adoption fee:")
 }
+}
+
 // Main program
 console.log("Welcome to the Pet Shelter System");
 while (true) {
